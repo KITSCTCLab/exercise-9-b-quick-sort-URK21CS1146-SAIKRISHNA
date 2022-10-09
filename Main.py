@@ -1,7 +1,22 @@
 from typing import List
 
-def quick_sort(data, low, high) -> List[int]:
+def sorting(data,low,high):
     # Write code here
+    i=low-1
+    pivot = data[high]
+    for j in range(low,high):
+        if data[j] <= pivot:
+            i+=1
+            data[i],data[j] = data[j],data[i]
+    data[i+1],data[high] = data[high],data[i+1]
+    return i+1
+
+def quick_sort(data, low, high) -> List[int]:
+    if low<high:
+        pi =sorting(data,low,high)
+        quick_sort(data,low,pi-1)
+        quick_sort(data,pi+1,high)
+        return data
 
 
 input_data = input()
@@ -11,4 +26,4 @@ for item in input_data.split(', '):
     data.append(int(item))
   elif item.lstrip("-").isnumeric():
     data.append(int(item))
-print(quick_sort(data, 0, len(data)-1))
+print(quick_sort(data, 0, len(data)-1)
